@@ -25,7 +25,7 @@ const tasksRoutes = require("./routes/tasks");
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://task-manager-nine-roan.vercel.app/",
   credentials: true
 }));
 
