@@ -1,20 +1,3 @@
-// const express = require("express");
-// const cors = require("cors");
-
-// const app = express();
-
-// app.use(cors());
-// app.use(express.json());
-
-// app.get("/", (req, res) => {
-//     res.send("Task Manager API Running");
-// });
-
-// const PORT = 5000;
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
-// });
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -22,19 +5,28 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const tasksRoutes = require("./routes/tasks");
 
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://task-manager-nine-roan.vercel.app"
+];
+
 app.use(cors({
-  origin: "https://task-manager-nine-roan.vercel.app",
+  origin: allowedOrigins,
   credentials: true
 }));
-
-app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Task Manager API running");
 });
 
-app.use("/auth", authRoutes);   // /auth/signup, /auth/login
-app.use("/tasks", tasksRoutes); // protected task routes
+// Routes
+app.use("/auth", authRoutes);
+app.use("/tasks", tasksRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
