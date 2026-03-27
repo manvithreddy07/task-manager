@@ -22,8 +22,6 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const tasksRoutes = require("./routes/tasks");
 
-const cors = require("cors");
-
 app.use(cors({
   origin: "https://task-manager-nine-roan.vercel.app",
   credentials: true
