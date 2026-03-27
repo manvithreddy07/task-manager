@@ -4,7 +4,7 @@ const pool = require("../db/db");
 
 const router = express.Router();
 
-// ✅ GET TASKS
+// GET TASKS
 router.get("/", auth, async (req, res) => {
   const userId = req.user.id;
 
@@ -24,7 +24,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// ✅ CREATE TASK
+// CREATE TASK
 router.post("/", auth, async (req, res) => {
   const userId = req.user.id;
   const { title, description, deadline, priority } = req.body;
@@ -54,7 +54,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// ✅ DELETE TASK
+// DELETE TASK
 router.delete("/:id", auth, async (req, res) => {
   const userId = req.user.id;
   const taskId = req.params.id;
@@ -78,7 +78,7 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
-// ✅ TOGGLE STATUS (FIXED)
+// TOGGLE STATUS (FIXED)
 router.put("/:id/status", auth, async (req, res) => {
   const userId = req.user.id;
   const { id } = req.params;
